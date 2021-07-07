@@ -9,23 +9,9 @@ import (
 )
 
 func setupRoutes(app *fiber.App) {
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.Status(fiber.StatusOK).JSON(fiber.Map{
-			"success": true,
-			"message": "You are at the endpoint",
-		})
-	})
+	route := app.Group("/api/todos")
 
-	api := app.Group("/api")
-
-	api.Get("", func(c *fiber.Ctx) error {
-		return c.Status(fiber.StatusOK).JSON(fiber.Map{
-			"success": true,
-			"message": "You are at the api endpoint",
-		})
-	})
-
-	routes.TodoRoute(api.Group("/todos"))
+	routes.PublicRoutes(route)
 }
 
 func main() {
