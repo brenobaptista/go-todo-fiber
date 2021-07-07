@@ -5,6 +5,7 @@ import (
 
 	"github.com/brenobaptista/library-go-fiber/controllers"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/logger"
 )
 
 func setupRoutes(app *fiber.App) {
@@ -17,6 +18,7 @@ func setupRoutes(app *fiber.App) {
 
 func main() {
 	app := fiber.New()
+	app.Use(logger.New())
 
 	setupRoutes(app)
 
