@@ -7,7 +7,7 @@ import (
 	_ "github.com/brenobaptista/library-go-fiber/docs"
 	"github.com/brenobaptista/library-go-fiber/routes"
 	"github.com/gofiber/fiber/v2"
-	"github.com/joho/godotenv"
+	_ "github.com/joho/godotenv/autoload"
 )
 
 func setupRoutes(app *fiber.App) {
@@ -31,11 +31,6 @@ func main() {
 	app := fiber.New()
 
 	configs.Middleware(app)
-
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
 
 	configs.ConnectDB()
 
