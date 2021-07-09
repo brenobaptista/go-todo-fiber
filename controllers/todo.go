@@ -46,6 +46,43 @@ func GetTodos(c *fiber.Ctx) error {
 	})
 }
 
+func GetTodo(c *fiber.Ctx) error {
+	todoCollection := config.MI.DB.Collection(os.Getenv("TODO_COLLECTION"))
+
+	paramID := c.Params("id")
+
+	id, err := primitive.ObjectIDFromHex(paramID)
+
+	if err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"success": false,
+			"message": "Cannot parse Id",
+			"error":   err,
+		})
+	}
+
+	todo := &models.Todo{}
+
+	query := bson.D{{Key: "_id", Value: id}}
+
+	err = todoCollection.FindOne(c.Context(), query).Decode(todo)
+
+	if err != nil {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
+			"success": false,
+			"message": "Todo Not found",
+			"error":   err,
+		})
+	}
+
+	return c.Status(fiber.StatusOK).JSON(fiber.Map{
+		"success": true,
+		"data": fiber.Map{
+			"todo": todo,
+		},
+	})
+}
+
 func CreateTodo(c *fiber.Ctx) error {
 	todoCollection := config.MI.DB.Collection(os.Getenv("TODO_COLLECTION"))
 
@@ -83,43 +120,6 @@ func CreateTodo(c *fiber.Ctx) error {
 	todoCollection.FindOne(c.Context(), query).Decode(todo)
 
 	return c.Status(fiber.StatusCreated).JSON(fiber.Map{
-		"success": true,
-		"data": fiber.Map{
-			"todo": todo,
-		},
-	})
-}
-
-func GetTodo(c *fiber.Ctx) error {
-	todoCollection := config.MI.DB.Collection(os.Getenv("TODO_COLLECTION"))
-
-	paramID := c.Params("id")
-
-	id, err := primitive.ObjectIDFromHex(paramID)
-
-	if err != nil {
-		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-			"success": false,
-			"message": "Cannot parse Id",
-			"error":   err,
-		})
-	}
-
-	todo := &models.Todo{}
-
-	query := bson.D{{Key: "_id", Value: id}}
-
-	err = todoCollection.FindOne(c.Context(), query).Decode(todo)
-
-	if err != nil {
-		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
-			"success": false,
-			"message": "Todo Not found",
-			"error":   err,
-		})
-	}
-
-	return c.Status(fiber.StatusOK).JSON(fiber.Map{
 		"success": true,
 		"data": fiber.Map{
 			"todo": todo,
