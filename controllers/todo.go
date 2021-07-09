@@ -12,6 +12,14 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
+// GetTodos func gets all to-dos.
+// @Description Get all to-dos.
+// @Summary get all to-dos
+// @Tags To-dos
+// @Accept json
+// @Produce json
+// @Success 200 {array} models.Todo
+// @Router /api/todos [get]
 func GetTodos(c *fiber.Ctx) error {
 	todoCollection := config.MI.DB.Collection(os.Getenv("TODO_COLLECTION"))
 
@@ -46,6 +54,15 @@ func GetTodos(c *fiber.Ctx) error {
 	})
 }
 
+// GetTodo func gets a to-do by given ID or 404 error.
+// @Description Get a to-do by given ID.
+// @Summary get a to-do by given ID
+// @Tags To-dos
+// @Accept json
+// @Produce json
+// @Param id path string true "To-do ID"
+// @Success 200 {object} models.Todo
+// @Router /api/todos/{id} [get]
 func GetTodo(c *fiber.Ctx) error {
 	todoCollection := config.MI.DB.Collection(os.Getenv("TODO_COLLECTION"))
 
@@ -83,6 +100,15 @@ func GetTodo(c *fiber.Ctx) error {
 	})
 }
 
+// CreateTodo func creates a new to-do.
+// @Description Create a new to-do.
+// @Summary create a new to-do
+// @Tags To-dos
+// @Accept json
+// @Produce json
+// @Param title body string true "Title"
+// @Success 201 {object} models.Todo
+// @Router /api/todos [post]
 func CreateTodo(c *fiber.Ctx) error {
 	todoCollection := config.MI.DB.Collection(os.Getenv("TODO_COLLECTION"))
 
@@ -127,6 +153,16 @@ func CreateTodo(c *fiber.Ctx) error {
 	})
 }
 
+// UpdateTodo func updates a to-do by given ID.
+// @Description Update a to-do by given ID.
+// @Summary update a to-do by given ID
+// @Tags To-dos
+// @Accept json
+// @Produce json
+// @Param title body string false "Title"
+// @Param completed body boolean false "Completed"
+// @Success 200 {object} models.Todo
+// @Router /api/todos/{id} [put]
 func UpdateTodo(c *fiber.Ctx) error {
 	todoCollection := config.MI.DB.Collection(os.Getenv("TODO_COLLECTION"))
 
@@ -201,6 +237,15 @@ func UpdateTodo(c *fiber.Ctx) error {
 	})
 }
 
+// DeleteTodo func deletes a to-do by given ID.
+// @Description Delete a to-do by given ID.
+// @Summary delete a to-do by given ID
+// @Tags To-dos
+// @Accept json
+// @Produce json
+// @Param id body string true "To-do ID"
+// @Success 204 {string} status "No Content"
+// @Router /api/todos/{id} [delete]
 func DeleteTodo(c *fiber.Ctx) error {
 	todoCollection := config.MI.DB.Collection(os.Getenv("TODO_COLLECTION"))
 

@@ -1,0 +1,134 @@
+basePath: /
+definitions:
+  models.Todo:
+    properties:
+      completed:
+        type: boolean
+      createdAt:
+        type: string
+      id:
+        type: string
+      title:
+        type: string
+      updatedAt:
+        type: string
+    type: object
+host: localhost:3000
+info:
+  contact:
+    email: brenobaptista@protonmail.com
+    name: Contact me
+  description: To-do API made using Fiber
+  license:
+    name: MIT License
+    url: https://mit-license.org/
+  termsOfService: http://swagger.io/terms/
+  title: To-do Go Fiber
+  version: "1.0"
+paths:
+  /api/todos:
+    get:
+      consumes:
+      - application/json
+      description: Get all to-dos.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Todo'
+            type: array
+      summary: get all to-dos
+      tags:
+      - To-dos
+    post:
+      consumes:
+      - application/json
+      description: Create a new to-do.
+      parameters:
+      - description: Title
+        in: body
+        name: title
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Todo'
+      summary: create a new to-do
+      tags:
+      - To-dos
+  /api/todos/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a to-do by given ID.
+      parameters:
+      - description: To-do ID
+        in: body
+        name: id
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+          schema:
+            type: string
+      summary: delete a to-do by given ID
+      tags:
+      - To-dos
+    get:
+      consumes:
+      - application/json
+      description: Get a to-do by given ID.
+      parameters:
+      - description: To-do ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Todo'
+      summary: get a to-do by given ID
+      tags:
+      - To-dos
+    put:
+      consumes:
+      - application/json
+      description: Update a to-do by given ID.
+      parameters:
+      - description: Title
+        in: body
+        name: title
+        schema:
+          type: string
+      - description: Completed
+        in: body
+        name: completed
+        schema:
+          type: boolean
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Todo'
+      summary: update a to-do by given ID
+      tags:
+      - To-dos
+swagger: "2.0"
