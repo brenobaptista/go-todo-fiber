@@ -7,7 +7,6 @@ import (
 	_ "github.com/brenobaptista/library-go-fiber/docs"
 	"github.com/brenobaptista/library-go-fiber/routes"
 	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/joho/godotenv"
 )
 
@@ -30,7 +29,8 @@ func setupRoutes(app *fiber.App) {
 // @BasePath /
 func main() {
 	app := fiber.New()
-	app.Use(logger.New())
+
+	configs.Middleware(app)
 
 	err := godotenv.Load()
 	if err != nil {
