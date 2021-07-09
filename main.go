@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/brenobaptista/library-go-fiber/config"
+	"github.com/brenobaptista/library-go-fiber/configs"
 	_ "github.com/brenobaptista/library-go-fiber/docs"
 	"github.com/brenobaptista/library-go-fiber/routes"
 	"github.com/gofiber/fiber/v2"
@@ -37,7 +37,7 @@ func main() {
 		log.Fatal("Error loading .env file")
 	}
 
-	config.ConnectDB()
+	configs.ConnectDB()
 
 	setupRoutes(app)
 
