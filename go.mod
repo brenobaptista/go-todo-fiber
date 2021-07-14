@@ -13,6 +13,7 @@ require (
 	github.com/joho/godotenv v1.3.0
 	github.com/klauspost/compress v1.13.1 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
+	github.com/stretchr/testify v1.6.1
 	github.com/swaggo/swag v1.7.0
 	github.com/valyala/fasthttp v1.28.0 // indirect
 	go.mongodb.org/mongo-driver v1.5.4
