@@ -14,7 +14,7 @@ func setupRoutes(app *fiber.App) {
 	route := app.Group("/api/todos")
 
 	routes.SwaggerRoute(app)
-	routes.PublicRoutes(route)
+	routes.TodoPublicRoutes(route)
 }
 
 // @title To-do Go Fiber

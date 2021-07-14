@@ -5,7 +5,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func PublicRoutes(route fiber.Router) {
+func TodoPublicRoutes(route fiber.Router) {
 	route.Get("", controllers.GetTodos)
 	route.Get("/:id", controllers.GetTodo)
 	route.Post("", controllers.CreateTodo)
