@@ -1,4 +1,4 @@
-module github.com/brenobaptista/library-go-fiber
+module github.com/brenobaptista/go-todo-fiber
 
 go 1.16
 

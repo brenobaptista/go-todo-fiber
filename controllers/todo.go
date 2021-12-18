@@ -4,8 +4,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/brenobaptista/library-go-fiber/configs"
-	"github.com/brenobaptista/library-go-fiber/models"
+	"github.com/brenobaptista/go-todo-fiber/configs"
+	"github.com/brenobaptista/go-todo-fiber/models"
 	"github.com/gofiber/fiber/v2"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"

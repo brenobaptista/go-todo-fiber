@@ -3,9 +3,9 @@ package main
 import (
 	"log"
 
-	"github.com/brenobaptista/library-go-fiber/configs"
-	_ "github.com/brenobaptista/library-go-fiber/docs"
-	"github.com/brenobaptista/library-go-fiber/routes"
+	"github.com/brenobaptista/go-todo-fiber/configs"
+	_ "github.com/brenobaptista/go-todo-fiber/docs"
+	"github.com/brenobaptista/go-todo-fiber/routes"
 	"github.com/gofiber/fiber/v2"
 	_ "github.com/joho/godotenv/autoload"
 )
