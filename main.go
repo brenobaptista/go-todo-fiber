@@ -1,7 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"log"
+	"os"
 
 	"github.com/brenobaptista/go-todo-fiber/configs"
 	_ "github.com/brenobaptista/go-todo-fiber/docs"
@@ -36,5 +38,9 @@ func main() {
 
 	setupRoutes(app)
 
-	log.Fatal(app.Listen(":8080"))
+	port := os.Getenv("PORT")
+	err := app.Listen(fmt.Sprintf(":%s", port))
+	if err != nil {
+		log.Fatal(err)
+	}
 }
