@@ -8,7 +8,7 @@
 Install dependencies:
 $ go mod tidy
 
-Serve with hot reload at localhost:3000
+Serve with hot reload at localhost:8080
 $ go run main.go
 ```
 
@@ -16,7 +16,7 @@ $ go run main.go
 
 ![Swagger UI](https://github.com/brenobaptista/todo-go-fiber/blob/main/docs/screenshot.png)
 
-[http://localhost:3000/swagger/index.html](http://localhost:3000/swagger/index.html)
+[http://localhost:8080/swagger/index.html](http://localhost:8080/swagger/index.html)
 
 Add comments to the controllers, [see declarative comments format](https://swaggo.github.io/swaggo.io/declarative_comments_format/).
 

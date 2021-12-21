@@ -25,7 +25,7 @@ func setupRoutes(app *fiber.App) {
 // @contact.email brenobaptista@protonmail.com
 // @license.name MIT License
 // @license.url https://mit-license.org/
-// @host localhost:3000
+// @host localhost:8080
 // @BasePath /
 func main() {
 	app := fiber.New()
@@ -36,5 +36,5 @@ func main() {
 
 	setupRoutes(app)
 
-	log.Fatal(app.Listen(":3000"))
+	log.Fatal(app.Listen(":8080"))
 }
