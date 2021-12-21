@@ -1,4 +1,4 @@
-package configs
+package middlewares
 
 import (
 	"github.com/gofiber/fiber/v2"
@@ -6,7 +6,7 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/logger"
 )
 
-func Middleware(app *fiber.App) {
+func Fiber(app *fiber.App) {
 	app.Use(
 		cors.New(),
 		logger.New(),

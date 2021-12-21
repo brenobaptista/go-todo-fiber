@@ -5,9 +5,9 @@ import (
 	"log"
 	"os"
 
-	"github.com/brenobaptista/go-todo-fiber/configs"
 	_ "github.com/brenobaptista/go-todo-fiber/docs"
 	"github.com/brenobaptista/go-todo-fiber/pkg/db"
+	"github.com/brenobaptista/go-todo-fiber/pkg/middlewares"
 	"github.com/brenobaptista/go-todo-fiber/pkg/routes"
 	"github.com/gofiber/fiber/v2"
 	_ "github.com/joho/godotenv/autoload"
@@ -26,7 +26,7 @@ import (
 func main() {
 	app := fiber.New()
 
-	configs.Middleware(app)
+	middlewares.Fiber(app)
 
 	db.ConnectDB()
 
