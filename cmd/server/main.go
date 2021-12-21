@@ -12,13 +12,6 @@ import (
 	_ "github.com/joho/godotenv/autoload"
 )
 
-func setupRoutes(app *fiber.App) {
-	route := app.Group("/api/todos")
-
-	routes.SwaggerRoute(app)
-	routes.TodoPublicRoutes(route)
-}
-
 // @title To-do Go Fiber
 // @version 1.0
 // @description To-do API made using Fiber
@@ -36,7 +29,8 @@ func main() {
 
 	configs.ConnectDB()
 
-	setupRoutes(app)
+	routes.SwaggerRoute(app)
+	routes.TodoPublicRoutes(app)
 
 	port := os.Getenv("PORT")
 	err := app.Listen(fmt.Sprintf(":%s", port))

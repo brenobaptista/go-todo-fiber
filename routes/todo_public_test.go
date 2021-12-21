@@ -51,9 +51,7 @@ func TestTodoPublicRoutes(t *testing.T) {
 
 	configs.ConnectDB()
 
-	route := app.Group("/api/todos")
-
-	TodoPublicRoutes(route)
+	TodoPublicRoutes(app)
 
 	for _, test := range tests {
 		req := httptest.NewRequest(test.method, test.route, nil)
