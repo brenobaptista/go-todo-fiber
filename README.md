@@ -9,7 +9,7 @@ Install dependencies:
 $ go mod tidy
 
 Serve with hot reload at localhost:8080
-$ go run main.go
+$ go run ./cmd/server/main.go
 ```
 
 ## Documentation
