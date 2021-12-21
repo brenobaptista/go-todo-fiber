@@ -5,7 +5,6 @@ import (
 	"time"
 
 	"github.com/brenobaptista/go-todo-fiber/pkg/db"
-	"github.com/brenobaptista/go-todo-fiber/pkg/models"
 	"github.com/gofiber/fiber/v2"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -18,7 +17,7 @@ import (
 // @Tags To-dos
 // @Accept json
 // @Produce json
-// @Success 200 {array} models.Todo
+// @Success 200 {array} db.Todo
 // @Router /api/todos [get]
 func GetTodos(c *fiber.Ctx) error {
 	todoCollection := db.MI.DB.Collection(os.Getenv("TODO_COLLECTION"))
@@ -35,7 +34,7 @@ func GetTodos(c *fiber.Ctx) error {
 		})
 	}
 
-	var todos []models.Todo = make([]models.Todo, 0)
+	var todos []db.Todo = make([]db.Todo, 0)
 
 	err = cursor.All(c.Context(), &todos)
 	if err != nil {
@@ -61,7 +60,7 @@ func GetTodos(c *fiber.Ctx) error {
 // @Accept json
 // @Produce json
 // @Param id path string true "To-do ID"
-// @Success 200 {object} models.Todo
+// @Success 200 {object} db.Todo
 // @Router /api/todos/{id} [get]
 func GetTodo(c *fiber.Ctx) error {
 	todoCollection := db.MI.DB.Collection(os.Getenv("TODO_COLLECTION"))
@@ -78,7 +77,7 @@ func GetTodo(c *fiber.Ctx) error {
 		})
 	}
 
-	todo := &models.Todo{}
+	todo := &db.Todo{}
 
 	query := bson.D{{Key: "_id", Value: id}}
 
@@ -107,12 +106,12 @@ func GetTodo(c *fiber.Ctx) error {
 // @Accept json
 // @Produce json
 // @Param title body string true "Title"
-// @Success 201 {object} models.Todo
+// @Success 201 {object} db.Todo
 // @Router /api/todos [post]
 func CreateTodo(c *fiber.Ctx) error {
 	todoCollection := db.MI.DB.Collection(os.Getenv("TODO_COLLECTION"))
 
-	data := new(models.Todo)
+	data := new(db.Todo)
 
 	err := c.BodyParser(&data)
 
@@ -140,7 +139,7 @@ func CreateTodo(c *fiber.Ctx) error {
 		})
 	}
 
-	todo := &models.Todo{}
+	todo := &db.Todo{}
 	query := bson.D{{Key: "_id", Value: result.InsertedID}}
 
 	todoCollection.FindOne(c.Context(), query).Decode(todo)
@@ -161,7 +160,7 @@ func CreateTodo(c *fiber.Ctx) error {
 // @Produce json
 // @Param title body string false "Title"
 // @Param completed body boolean false "Completed"
-// @Success 200 {object} models.Todo
+// @Success 200 {object} db.Todo
 // @Router /api/todos/{id} [put]
 func UpdateTodo(c *fiber.Ctx) error {
 	todoCollection := db.MI.DB.Collection(os.Getenv("TODO_COLLECTION"))
@@ -178,7 +177,7 @@ func UpdateTodo(c *fiber.Ctx) error {
 		})
 	}
 
-	data := new(models.Todo)
+	data := new(db.Todo)
 	err = c.BodyParser(&data)
 
 	if err != nil {
@@ -225,7 +224,7 @@ func UpdateTodo(c *fiber.Ctx) error {
 		})
 	}
 
-	todo := &models.Todo{}
+	todo := &db.Todo{}
 
 	todoCollection.FindOne(c.Context(), query).Decode(todo)
 
