@@ -7,6 +7,7 @@ import (
 
 	"github.com/brenobaptista/go-todo-fiber/configs"
 	_ "github.com/brenobaptista/go-todo-fiber/docs"
+	"github.com/brenobaptista/go-todo-fiber/pkg/db"
 	"github.com/brenobaptista/go-todo-fiber/pkg/routes"
 	"github.com/gofiber/fiber/v2"
 	_ "github.com/joho/godotenv/autoload"
@@ -27,7 +28,7 @@ func main() {
 
 	configs.Middleware(app)
 
-	configs.ConnectDB()
+	db.ConnectDB()
 
 	routes.SwaggerRoute(app)
 	routes.TodoPublicRoutes(app)

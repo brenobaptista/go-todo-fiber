@@ -4,7 +4,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/brenobaptista/go-todo-fiber/configs"
+	"github.com/brenobaptista/go-todo-fiber/pkg/db"
 	"github.com/gofiber/fiber/v2"
 	"github.com/joho/godotenv"
 	"github.com/stretchr/testify/assert"
@@ -49,7 +49,7 @@ func TestTodoPublicRoutes(t *testing.T) {
 
 	app := fiber.New()
 
-	configs.ConnectDB()
+	db.ConnectDB()
 
 	TodoPublicRoutes(app)
 

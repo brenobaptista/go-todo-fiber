@@ -4,8 +4,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/brenobaptista/go-todo-fiber/configs"
 	"github.com/brenobaptista/go-todo-fiber/models"
+	"github.com/brenobaptista/go-todo-fiber/pkg/db"
 	"github.com/gofiber/fiber/v2"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -21,7 +21,7 @@ import (
 // @Success 200 {array} models.Todo
 // @Router /api/todos [get]
 func GetTodos(c *fiber.Ctx) error {
-	todoCollection := configs.MI.DB.Collection(os.Getenv("TODO_COLLECTION"))
+	todoCollection := db.MI.DB.Collection(os.Getenv("TODO_COLLECTION"))
 
 	query := bson.D{{}}
 
@@ -64,7 +64,7 @@ func GetTodos(c *fiber.Ctx) error {
 // @Success 200 {object} models.Todo
 // @Router /api/todos/{id} [get]
 func GetTodo(c *fiber.Ctx) error {
-	todoCollection := configs.MI.DB.Collection(os.Getenv("TODO_COLLECTION"))
+	todoCollection := db.MI.DB.Collection(os.Getenv("TODO_COLLECTION"))
 
 	paramID := c.Params("id")
 
@@ -110,7 +110,7 @@ func GetTodo(c *fiber.Ctx) error {
 // @Success 201 {object} models.Todo
 // @Router /api/todos [post]
 func CreateTodo(c *fiber.Ctx) error {
-	todoCollection := configs.MI.DB.Collection(os.Getenv("TODO_COLLECTION"))
+	todoCollection := db.MI.DB.Collection(os.Getenv("TODO_COLLECTION"))
 
 	data := new(models.Todo)
 
@@ -164,7 +164,7 @@ func CreateTodo(c *fiber.Ctx) error {
 // @Success 200 {object} models.Todo
 // @Router /api/todos/{id} [put]
 func UpdateTodo(c *fiber.Ctx) error {
-	todoCollection := configs.MI.DB.Collection(os.Getenv("TODO_COLLECTION"))
+	todoCollection := db.MI.DB.Collection(os.Getenv("TODO_COLLECTION"))
 
 	paramID := c.Params("id")
 
@@ -247,7 +247,7 @@ func UpdateTodo(c *fiber.Ctx) error {
 // @Success 204 {string} status "No Content"
 // @Router /api/todos/{id} [delete]
 func DeleteTodo(c *fiber.Ctx) error {
-	todoCollection := configs.MI.DB.Collection(os.Getenv("TODO_COLLECTION"))
+	todoCollection := db.MI.DB.Collection(os.Getenv("TODO_COLLECTION"))
 
 	paramID := c.Params("id")
 
