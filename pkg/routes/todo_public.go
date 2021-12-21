@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"github.com/brenobaptista/go-todo-fiber/controllers"
+	"github.com/brenobaptista/go-todo-fiber/pkg/controllers"
 	"github.com/gofiber/fiber/v2"
 )
 
