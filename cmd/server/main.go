@@ -7,8 +7,8 @@ import (
 
 	_ "github.com/brenobaptista/go-todo-fiber/docs"
 	"github.com/brenobaptista/go-todo-fiber/pkg/db"
-	"github.com/brenobaptista/go-todo-fiber/pkg/middlewares"
-	"github.com/brenobaptista/go-todo-fiber/pkg/routes"
+	"github.com/brenobaptista/go-todo-fiber/pkg/middleware"
+	"github.com/brenobaptista/go-todo-fiber/pkg/route"
 	"github.com/gofiber/fiber/v2"
 	_ "github.com/joho/godotenv/autoload"
 )
@@ -26,12 +26,12 @@ import (
 func main() {
 	app := fiber.New()
 
-	middlewares.Fiber(app)
+	middleware.Fiber(app)
 
 	db.ConnectDB()
 
-	routes.SwaggerRoute(app)
-	routes.TodoPublicRoutes(app)
+	route.SwaggerRoute(app)
+	route.TodoPublicRoutes(app)
 
 	port := os.Getenv("PORT")
 	err := app.Listen(fmt.Sprintf(":%s", port))
