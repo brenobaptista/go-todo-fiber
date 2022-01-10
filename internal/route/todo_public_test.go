@@ -4,7 +4,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/brenobaptista/go-todo-fiber/pkg/db"
+	"github.com/brenobaptista/go-todo-fiber/internal/db"
 	"github.com/gofiber/fiber/v2"
 	"github.com/joho/godotenv"
 	"github.com/stretchr/testify/assert"

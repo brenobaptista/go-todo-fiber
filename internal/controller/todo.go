@@ -4,7 +4,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/brenobaptista/go-todo-fiber/pkg/db"
+	"github.com/brenobaptista/go-todo-fiber/internal/db"
 	"github.com/gofiber/fiber/v2"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"

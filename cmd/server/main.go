@@ -6,9 +6,9 @@ import (
 	"os"
 
 	_ "github.com/brenobaptista/go-todo-fiber/docs"
-	"github.com/brenobaptista/go-todo-fiber/pkg/db"
-	"github.com/brenobaptista/go-todo-fiber/pkg/middleware"
-	"github.com/brenobaptista/go-todo-fiber/pkg/route"
+	"github.com/brenobaptista/go-todo-fiber/internal/db"
+	"github.com/brenobaptista/go-todo-fiber/internal/middleware"
+	"github.com/brenobaptista/go-todo-fiber/internal/route"
 	"github.com/gofiber/fiber/v2"
 	_ "github.com/joho/godotenv/autoload"
 )
